@@ -7,14 +7,14 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class CanalTV {
+public class CatalogoTV {
 
 	private int numCanal;
 	private String nombreCanal;
 	private boolean privado;
 	private ArrayList<ProgramaTV> listaPrograma;
 
-	public CanalTV() {
+	public CatalogoTV() {
 	}
 
 	public int getNumCanal() {
@@ -52,22 +52,43 @@ public class CanalTV {
 	public void addPrograma(ProgramaTV programa) {
 		listaPrograma.add(programa);
 	}
-	public void crearFicheroCanal(String nombreCanal){
-		File f = new File("D:/Robert_Baluta/2. Evaluacion/archivos/canales/" + nombreCanal + ".txt");
-		if(f.exists()){
+	public void crearFichCatalogo(String nombreCanal){
+		File f = new File("D:/archivos/canales/catalogoTV.txt");
+		try {
+			FileWriter fileWriter;
+			fileWriter = new FileWriter(f);
+			PrintWriter printWrite = new PrintWriter(fileWriter);
+			printWrite.println(nombreCanal);
+			printWrite.close();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void crearFicheroCanal(String nombreCanal) {
+		File f = new File("D:/archivos/canales/" + nombreCanal + ".txt");
+		if (f.exists()) {
 			System.out.println("El canal " + nombreCanal + " ya existe.");
-		}else{
+		} else {
 			try {
 				FileWriter fileWriter;
 				fileWriter = new FileWriter(f);
 				PrintWriter printWrite = new PrintWriter(fileWriter);
 				printWrite.close();
+				System.out.println("Canal " + nombreCanal + " creado");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
 		}
+	}
+
+	public void selecCanal(String nombreCanal) {
+		
 	}
 
 	public void mostrarInfo(ArrayList<ProgramaTV> listaPrograma) {
