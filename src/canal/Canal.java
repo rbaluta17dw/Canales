@@ -7,14 +7,14 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class CatalogoTV {
+public class Canal {
 
 	private int numCanal;
 	private String nombreCanal;
 	private boolean privado;
 	private ArrayList<ProgramaTV> listaPrograma;
 
-	public CatalogoTV() {
+	public Canal() {
 	}
 
 	public int getNumCanal() {
@@ -52,22 +52,22 @@ public class CatalogoTV {
 	public void addPrograma(ProgramaTV programa) {
 		listaPrograma.add(programa);
 	}
-	public void crearFichCatalogo(String nombreCanal){
+
+	public void crearFichCatalogo(String nombreCanal) {
 		File f = new File("D:/archivos/canales/catalogoTV.txt");
 		try {
 			FileWriter fileWriter;
 			fileWriter = new FileWriter(f);
 			PrintWriter printWrite = new PrintWriter(fileWriter);
-			printWrite.println(nombreCanal);
 			printWrite.close();
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public void crearFicheroCanal(String nombreCanal) {
 		File f = new File("D:/archivos/canales/" + nombreCanal + ".txt");
 		if (f.exists()) {
@@ -88,7 +88,7 @@ public class CatalogoTV {
 	}
 
 	public void selecCanal(String nombreCanal) {
-		
+
 	}
 
 	public void mostrarInfo(ArrayList<ProgramaTV> listaPrograma) {
