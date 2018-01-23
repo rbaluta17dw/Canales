@@ -16,6 +16,9 @@ public class Canal {
 
 	public Canal() {
 	}
+	public Canal(String nombreCanal,int numCanal,boolean privado){
+		
+	}
 
 	public int getNumCanal() {
 		return numCanal;
@@ -109,7 +112,7 @@ public class Canal {
 		}
 	}
 
-	public void addPrograma(String nomProg, int duracion, String categoria) {
+	public void addPrograma(String nomProg, int duracion, String categoria, String Canal) {
 		ProgramaTV p = new ProgramaTV();
 		p.setCategoria(categoria);
 		p.setDuracion(duracion);

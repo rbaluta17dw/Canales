@@ -1,6 +1,7 @@
 package canal;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class MainCanal {
@@ -23,9 +24,12 @@ public class MainCanal {
 		String nombreCanal;
 		int numCanal;
 		String privado;
+		String nomProg;
+		int duracion;
+		String categoria;
 
 		Scanner scan = new Scanner(System.in);
-
+		Canal canal = new Canal();
 		do {
 
 			System.out.println(CREARC + "- Crear canal de television");
@@ -33,10 +37,6 @@ public class MainCanal {
 			System.out.println(LEERC + "- Mostrar lista de canales de television y su informacion");
 			System.out.println(ACTUALIZARC + "- Cambiar si el canal de television es privado o publico");
 			System.out.println(BORRARC + "- Borrar un canal de television");
-			System.out.println(CREARP + "- Crear programa de television");
-			System.out.println(LEERP + "- Mostrar informacion de programa de television");
-			System.out.println(ACTUALIZARP + "- Cambiar duracion de programa de television");
-			System.out.println(BORRARP + "- Borrar programa de television");
 			System.out.println(SALIR + "- Salir del programa");
 
 			opcion = Integer.parseInt(scan.nextLine());
@@ -44,7 +44,6 @@ public class MainCanal {
 			switch (opcion) {
 			case CREARC:
 				// crear el objeto
-				Canal canal = new Canal();
 
 				/*
 				 * al crear el objeto se creara tambien el fichero donde luego
@@ -59,11 +58,11 @@ public class MainCanal {
 				canal.setNumCanal(numCanal);
 				System.out.println("¿El canal es privado o publico? (escribe publico o privado)");
 				privado = scan.nextLine();
-				if (privado.equalsIgnoreCase("privado")){
+				if (privado.equalsIgnoreCase("privado")) {
 					canal.setPrivado(true);
-				}else if (privado.equalsIgnoreCase("publico")){
+				} else if (privado.equalsIgnoreCase("publico")) {
 					canal.setPrivado(false);
-				}else{
+				} else {
 					System.out.println("El valor introducido es erroneo");
 				}
 				canal.setNombreCanal(nombreCanal);
@@ -73,24 +72,60 @@ public class MainCanal {
 			case SELEC:
 				System.out.println("Escribe el nombre del canal de TV que quieres seleccionar");
 				nombreCanal = scan.nextLine();
+				Iterator<Canal> i = canales.iterator();
+				while (i.hasNext()) {
+					i.next();
+					if (i.equals(nombreCanal)) {
+						System.out.println("Has seleccionado el canal " + nombreCanal);
+						do {
+							System.out.println(CREARP + "- Crear programa de television");
+							System.out.println(LEERP + "- Mostrar informacion de programa de television");
+							System.out.println(ACTUALIZARP + "- Cambiar duracion de programa de television");
+							System.out.println(BORRARP + "- Borrar programa de television");
+							System.out.println(SALIR + "- Salir del programa");
 
+							opcion = Integer.parseInt(scan.nextLine());
+
+							switch (opcion) {
+							case CREARP:
+								System.out.println("Escribe el nombre del programa que quieres crear");
+								nomProg = scan.nextLine();
+								System.out.println("¿Cuanto dura el programa?");
+								duracion = Integer.parseInt(scan.nextLine());
+								System.out.println("A que categoria pertenece el programa");
+								categoria = scan.nextLine();
+								canal.addPrograma(nomProg, duracion, categoria, nombreCanal);
+								break;
+							case LEERP:
+
+								break;
+							case ACTUALIZARP:
+
+								break;
+							case BORRARP:
+
+								break;
+							case SALIR:
+
+								break;
+							default:
+								System.out.println("Opcion incorrecta");
+								break;
+							}
+						} while (opcion != SALIR);
+					}
+				}
+				break;
+			case LEERC:
+				Iterator<Canal> j = canales.iterator();
+				while (j.hasNext()){
+					System.out.println(j.next());
+				}
 				break;
 			case ACTUALIZARC:
 
 				break;
 			case BORRARC:
-
-				break;
-			case CREARP:
-
-				break;
-			case LEERP:
-
-				break;
-			case ACTUALIZARP:
-
-				break;
-			case BORRARP:
 
 				break;
 			case SALIR:
